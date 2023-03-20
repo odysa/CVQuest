@@ -39,10 +39,12 @@ Example:
   "technical_questions": [
     "Can you discuss your experience with LSM-based storage engines? What are the main benefits of this approach, and how did you apply it in your work on AgateDB?",
     "In your work on Zone-Aware Garbage Collection for TerarkDB, what were the key performance metrics you used to evaluate the effectiveness of your implementation? How did it compare to other approaches?"
+    ......
   ],
   "behavior_questions": [
     "How do you approach working in a team environment? Can you provide an example of a successful collaboration with team members on a challenging project?",
     "As a RisingLight Project Maintainer, how do you balance your responsibilities as a maintainer with your other commitments? How do you ensure that you are meeting the needs of the project and the community while also managing your own workload?"
+    ......
   ]
 }
 ```
