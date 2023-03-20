@@ -56,14 +56,15 @@ Example:
     ......
   ]
 }
+```
 
 ### Generate Json Output from resume (CLI)
 ```bash
 python main.py json <file_path>
 ```
-Examples:
+Example:
 
-Available soon
+_Available soon_
 
 ### Generate Interview Questions from resume (Gradio UI)
 
