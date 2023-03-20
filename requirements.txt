@@ -1,3 +1,5 @@
 openai==0.27.2
 PyPDF2==3.0.1
 typer==0.7.0
+rich
+gradio
