@@ -7,7 +7,7 @@ This command line interface (CLI) tool is designed to help interviewers and recr
 
 CVQuest also provides a Gradio-based user interface that allows users to upload their resume in PDF format and receive a list of interview questions organized by category.
 
-## Features
+## Features ✨
 * Parse resume files in PDF format and convert them into a JSON format
 * Generate interview questions based on the information extracted from the resume
 * Gradio-based user interface for generating personalized interview questions
