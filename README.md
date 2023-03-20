@@ -1,6 +1,12 @@
 # CVQuest
-
-Let AI generate your interview questions!
+<div align="center">
+<h3>Let AI interview you!</h3>
+<strong>
+<samp>
+[English](README.md) · [简体中文](README.zh-Hans.md)
+</samp>
+</strong>
+</div>
 <br>
 <br>
 This command line interface (CLI) tool is designed to help interviewers and recruiters by automatically generating interview questions based on a candidate's resume. The tool uses a combination of a resume parser to extract information from the resume and an interview question maker to create relevant questions.
