@@ -57,7 +57,7 @@ def question(file_path: str):
         transient=True,
     ) as progress:
         progress.add_task(description="Processing...", total=None)
-        pprint(question_maker.createQuestions(file_path))
+        pprint(question_maker.create_questions(file_path))
 
 
 if __name__ == "__main__":

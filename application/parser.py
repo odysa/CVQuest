@@ -14,7 +14,7 @@ from application.utils import OpenAIConfig, query_ai
 class ResumeJsonParser:
     """A class to parse resume PDF files and convert them into JSON format using GPT-3."""
 
-    def __init__(self, config: OpenAIConfig, prompt: str = PARSER_PROMPT):
+    def __init__(self, config: OpenAIConfig = OpenAIConfig(), prompt: str = PARSER_PROMPT):
         """
         Initialize the ResumeJsonParser with the specified configuration.
 

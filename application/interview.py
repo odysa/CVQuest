@@ -13,7 +13,7 @@ class InterviewQuestionMaker:
     Class to create interview questions based on a PDF resume.
     """
 
-    def __init__(self, config: OpenAIConfig, prompt: str = QUESTION_PROMPT):
+    def __init__(self, config: OpenAIConfig = OpenAIConfig(), prompt: str = QUESTION_PROMPT):
         """Initialize the InterviewQuestionMaker with the specified configuration."""
         self.config = config
         self.prompt = prompt
