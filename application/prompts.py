@@ -1,3 +1,7 @@
+"""
+A module of pre-defined prompts
+"""
+
 PARSER_PROMPT = """
 I want to you extract information from a PDF resume.
 Summarize it into a JSON with EXACTLY the following structure

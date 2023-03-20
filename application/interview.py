@@ -1,61 +1,68 @@
-import PyPDF2
+"""
+Module for generating interview questions from a PDF file.
+"""
+
 import re
-import openai
-import json
+import PyPDF2
 from application.prompts import QUESTION_PROMPT
+from application.utils import OpenAIConfig, query_ai
 
 
 class InterviewQuestionMaker:
-    def __init__(self, prompt: str = QUESTION_PROMPT,
-                 temperature: float = 0.0,
-                 max_tokens: int = 1000,
-                 top_p: float = 1,
-                 frequency_penalty: float = 0,
-                 presence_penalty: float = 0,):
+    """
+    Class to create interview questions based on a PDF resume.
+    """
 
+    def __init__(self, config: OpenAIConfig, prompt: str = QUESTION_PROMPT):
+        """Initialize the InterviewQuestionMaker with the specified configuration."""
+        self.config = config
         self.prompt = prompt
-        self.temperature = temperature
-        self.max_tokens = max_tokens
-        self.top_p = top_p
-        self.frequency_penalty = frequency_penalty
-        self.presence_penalty = presence_penalty
 
-    def createQuestions(self, pdf_path: str):
-        pdf_str = self.pdf2str(pdf_path)
-        prompt = self.completePrompt(pdf_str)
-        try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                top_p=self.top_p,
-                frequency_penalty=self.frequency_penalty,
-                presence_penalty=self.presence_penalty,
-                messages=[{"role": "user", "content": prompt}],
-            )
+    def create_questions(self, pdf_path: str):
+        """
+        Create interview questions for the given PDF resume file.
 
-            response: str = response.choices[0].message.content.strip()
-            return json.loads(response)
-        except Exception as e:
-            return e
+        Args:
+            pdf_path (str): Path to the PDF resume file.
+        """
+        pdf_str = self.pdf_to_str(pdf_path)
+        prompt = self.complete_prompt(pdf_str)
+        return query_ai(self.config, prompt)
 
-    def completePrompt(self, pdf_str: str) -> str:
+    def complete_prompt(self, pdf_str: str) -> str:
+        """
+        Complete the prompt with the given PDF string.
+
+        Args:
+            pdf_str (str): PDF content as a string.
+        """
         return self.prompt.format(resume=pdf_str)
 
-    def pdf2str(self, pdf_path: str) -> str:
-        with open(pdf_path, "rb") as f:
-            pdf = PyPDF2.PdfReader(f)
-            pages = [self.formatPdf(p.extract_text()) for p in pdf.pages]
-            # join pages
+    def pdf_to_str(self, pdf_path: str) -> str:
+        """
+        Convert the given PDF file to a string.
+
+        Args:
+            pdf_path (str): Path to the PDF file.
+        """
+        with open(pdf_path, "rb") as pdf_file:
+            pdf = PyPDF2.PdfReader(pdf_file)
+            pages = [self.format_pdf(p.extract_text()) for p in pdf.pages]
             return "\n\n".join(pages)
 
-    def formatPdf(self, pdf_str: str) -> str:
+    def format_pdf(self, pdf_str: str) -> str:
+        """
+        Format the given PDF string by applying pattern replacements.
+
+        Args:
+            pdf_str (str): PDF content as a string.
+        """
 
         pattern_replacements = {
-            r'\s[,.]': ',',
-            r'[\n]+': '\n',
-            r'[\s]+': ' ',
-            r'http[s]?(://)?': ''
+            r"\s[,.]": ",",
+            r"[\n]+": "\n",
+            r"[\s]+": " ",
+            r"http[s]?(://)?": "",
         }
 
         for pattern, replacement in pattern_replacements.items():
