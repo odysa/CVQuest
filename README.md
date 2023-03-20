@@ -23,6 +23,10 @@ git clone https://github.com/odysa/CVQuest-CLI
 pip install -r requirements.txt
 ```
 
+3. This application depends on OpenAI. Please set your api key
+```
+export OPENAI_API_KEY = <you-api-key>
+```
 ## Usage
 There are two main commands available in the CLI:
 

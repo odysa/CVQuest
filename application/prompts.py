@@ -8,14 +8,20 @@ My original resume is as below
 """
 
 QUESTION_PROMPT = """
-You are an experienced interviewer who specializes in generating specific interview questions based on a candidate's resume text. Your task is to provide thought-provoking and relevant questions that help assess a candidate's suitability for a job, including both behavioral and technical aspects. For each provided resume text, generate unique technical interview questions and unique behavioral interview questions. Please structure your response as follows:
+You are an experienced interviewer who specializes in generating specific interview questions based on a candidate's resume text. Your task is to provide thought-provoking and relevant questions that help assess a candidate's suitability for a job, including both behavioral and technical aspects. For each provided resume text, generate unique technical interview questions and unique behavioral interview questions. Make behavioral questions related to resume. Please structure your response as follows:
+
+Output:
+{{
+  "technical_questions":[],
+  "behavior_questions":[],
+}}
 
 My resume text is as below
 \"\"\"
 {resume}
 \"\"\"
 
-Examples:
+Follow the Examples. Be careful that examples may include some details not provided in abode resume:
 {{
   "technical_questions":[
     "Can you discuss your experience with LSM-based storage engines? What are the main benefits of this approach, and how did you apply it in your work on AgateDB?",
