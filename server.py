@@ -1,16 +1,15 @@
 import gradio as gr
 from application.interview import InterviewQuestionMaker
 
-# Define the function to be used in the Gradio UI
 def generate_interview_questions(resume_pdf):
+    """Generate interview questions based on the given resume PDF."""
     question_maker = InterviewQuestionMaker()
-    questions = question_maker.createQuestions(resume_pdf.name)
-    # Process the questions dict using display_questions
+    questions = question_maker.create_questions(resume_pdf.name)
     questions_html = display_questions(questions)
     return questions_html
-    
-# Define a custom output component for displaying questions in cards
+
 def display_questions(questions):
+    """Display the questions in an HTML format."""
     html = "<div>"
     for category, question_list in questions.items():
         html += f"<h2>{category.replace('_', ' ').title()}:</h2><div>"
@@ -21,8 +20,7 @@ def display_questions(questions):
     html += "</div>"
     return html
 
-# Create the Gradio UI using block syntax
-style = """
+STYLE = """
 .block {
     border-bottom: 0.5px solid lightgrey;
     margin: 8px 8px 20px 8px;
@@ -33,7 +31,7 @@ style = """
 }
 """
 
-with gr.Blocks(css=style) as demo:
+with gr.Blocks(css=STYLE) as demo:
     gr.Markdown("# Generate personal interview questions with your resume")
     gr.Markdown("Want preparations beyond interview questions? Check out __[Baynana's AI resume builder](https://baynana.co/)__ to 10x your interview rate. _We will not store your resume data._")
     input_pdf = gr.inputs.File(type="file")
