@@ -14,9 +14,8 @@ CVQuest also provides a Gradio-based user interface that allows users to upload 
 
 ## You may also enjoy our AI Resume Builder: baynana.co 🚀
 
-[Baynana.co](https://baynana.co) is an AI-powered resume builder that helps you create a professional and visually appealing resume tailored to your industry. With Baynana AI, you can:
+[Baynana.co](https://baynana.co) is an AI-powered resume builder that helps you create a professional resume tailored to your industry. With Baynana AI, you can:
 
-- Give us your resume in any language, and we'll translate into perfect business English for you
 - Build your resume with zero effort by chatting with Baynana AI, your personal resume assistant
 - Get real-time ATS feedback as you edit, so you can be sure your resume is ATS-friendly
 - Export your resume in PDF, LaTex, and even website-ready HTML formats
@@ -29,7 +28,7 @@ CVQuest also provides a Gradio-based user interface that allows users to upload 
 * OpenAI
 * Gradio
 
-# Installation
+## Installation
 
 1. Clone the repository:
 ```bash
