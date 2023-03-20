@@ -2,11 +2,11 @@ import PyPDF2
 import re
 import openai
 import json
-from prompts import PARSER_PROMPT
+from application.prompts import QUESTION_PROMPT
 
 
-class ResumeJsonParser:
-    def __init__(self, prompt: str = PARSER_PROMPT,
+class InterviewQuestionMaker:
+    def __init__(self, prompt: str = QUESTION_PROMPT,
                  temperature: float = 0.0,
                  max_tokens: int = 1000,
                  top_p: float = 1,
@@ -20,12 +20,8 @@ class ResumeJsonParser:
         self.frequency_penalty = frequency_penalty
         self.presence_penalty = presence_penalty
 
-    def pdf2json(self, pdf_path: str):
+    def createQuestions(self, pdf_path: str):
         pdf_str = self.pdf2str(pdf_path)
-        json = self.str2json(pdf_str)
-        return json
-
-    def str2json(self, pdf_str: str):
         prompt = self.completePrompt(pdf_str)
         try:
             response = openai.ChatCompletion.create(
@@ -44,7 +40,7 @@ class ResumeJsonParser:
             return e
 
     def completePrompt(self, pdf_str: str) -> str:
-        return self.prompt + pdf_str
+        return self.prompt.format(resume=pdf_str)
 
     def pdf2str(self, pdf_path: str) -> str:
         with open(pdf_path, "rb") as f:
