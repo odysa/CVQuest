@@ -1,3 +1,5 @@
+"""Server module for generating interview questions using Gradio."""
+
 import gradio as gr
 from application.interview import InterviewQuestionMaker
 
@@ -33,7 +35,9 @@ STYLE = """
 
 with gr.Blocks(css=STYLE) as demo:
     gr.Markdown("# Generate personal interview questions with your resume")
-    gr.Markdown("Want preparations beyond interview questions? Check out __[Baynana's AI resume builder](https://baynana.co/)__ to 10x your interview rate. _We will not store your resume data._")
+    gr.Markdown("Want preparations beyond interview questions? "
+                "Check out __[Baynana's AI resume builder](https://baynana.co/)__ to 10x your interview rate. "
+                "_We will not store your resume data._")
     input_pdf = gr.inputs.File(type="file")
     generate_btn = gr.Button("Generate")
     output_html = gr.outputs.HTML()
