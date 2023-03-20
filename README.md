@@ -33,7 +33,7 @@ CVQuest also provides a Gradio-based user interface that allows users to upload 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/odysa/CVQuest-CLI
+git clone https://github.com/odysa/CVQuest
 ```
 
 2. Install Dependencies
