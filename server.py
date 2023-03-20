@@ -36,7 +36,8 @@ STYLE = """
 with gr.Blocks(css=STYLE) as demo:
     gr.Markdown("# Generate personal interview questions with your resume")
     gr.Markdown("Want preparations beyond interview questions? "
-                "Check out __[Baynana's AI resume builder](https://baynana.co/)__ to 10x your interview rate. "
+                "Check out __[Baynana's AI resume builder](https://baynana.co/)__ "
+                "to 10x your interview rate. "
                 "_We will not store your resume data._")
     input_pdf = gr.inputs.File(type="file")
     generate_btn = gr.Button("Generate")
