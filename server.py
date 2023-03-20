@@ -2,11 +2,13 @@
 
 import gradio as gr
 from application.interview import InterviewQuestionMaker
+from application.utils import OpenAIConfig
 
 
 def generate_interview_questions(resume_pdf):
     """Generate interview questions based on the given resume PDF."""
-    question_maker = InterviewQuestionMaker()
+    question_maker = InterviewQuestionMaker(
+        config=OpenAIConfig(temperature=0.7))
     questions = question_maker.create_questions(resume_pdf.name)
     questions_html = display_questions(questions)
     return questions_html
