@@ -1,5 +1,8 @@
 # CVQuest
 
+Let AI generate your interview questions!
+<br>
+<br>
 This command line interface (CLI) tool is designed to help interviewers and recruiters by automatically generating interview questions based on a candidate's resume. The tool uses a combination of a resume parser to extract information from the resume and an interview question maker to create relevant questions.
 
 CVQuest also provides a Gradio-based user interface that allows users to upload their resume in PDF format and receive a list of interview questions organized by category.
@@ -76,3 +79,4 @@ After running the command, the Gradio UI will be launched in your default web br
 
 #### UI Preview
 <img width="1422" alt="image" src="https://user-images.githubusercontent.com/61036578/226255002-a1a661fa-86a8-4a82-9b29-3da68b088920.png">
+
