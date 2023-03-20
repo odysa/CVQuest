@@ -20,16 +20,6 @@ CVQuest also provides a Gradio-based user interface that allows users to upload 
 * Generate interview questions based on the information extracted from the resume
 * Gradio-based user interface for generating personalized interview questions
 
-## You may also enjoy our AI Resume Builder: baynana.co 🚀
-
-[Baynana.co](https://baynana.co) is an AI-powered resume builder that helps you create a professional resume tailored to your industry. With Baynana AI, you can:
-
-- Build your resume with zero effort by chatting with Baynana AI, your personal resume assistant
-- Get real-time ATS feedback as you edit, so you can be sure your resume is ATS-friendly
-- Export your resume in PDF, LaTex, and even website-ready HTML formats
-
-👉 [Get started with Baynana.co today!](https://baynana.co)
-
 ## Dependencies
 * Python 3.8 or later
 * typer
@@ -98,3 +88,14 @@ After running the command, the Gradio UI will be launched in your default web br
 #### UI Preview
 <img width="1422" alt="image" src="https://user-images.githubusercontent.com/61036578/226255002-a1a661fa-86a8-4a82-9b29-3da68b088920.png">
 
+
+
+## You may also enjoy our AI Resume Builder: baynana.co 🚀
+
+[Baynana.co](https://baynana.co) is an AI-powered resume builder that helps you create a professional resume tailored to your industry. With Baynana AI, you can:
+
+- Build your resume with zero effort by chatting with Baynana AI, your personal resume assistant
+- Get real-time ATS feedback as you edit, so you can be sure your resume is ATS-friendly
+- Export your resume in PDF, LaTex, and even website-ready HTML formats
+
+👉 [Get started with Baynana.co today!](https://baynana.co)
