@@ -26,33 +26,54 @@ def display_questions(questions):
 
 
 STYLE = """
+p {
+    font-size: 16px;
+}
+
 .block {
     border-bottom: 0.5px solid lightgrey;
     margin: 8px 8px 20px 8px;
     padding: 16px 16px 16px 0px;
 }
+
 .question {
     font-size: 18px;
 }
 """
 
-INTRO_MD = """
-# CVQuest -- Generate personal interview questions from your resume
+INTRO_HTML = """
+<h1>CVQuest -- Generate personal interview questions from your resume</h1>
 
-[![GitHub stars](https://img.shields.io/github/stars/Naereen/StrapDown.js.svg?style=social&label=Star&maxAge=2592000)](https://github.com/odysa/CVQuest)![GitHub followers](https://img.shields.io/github/followers/Naereen.svg?style=social&label=Follow&maxAge=2592000)
+<p style="display:flex">
+<a href="https://github.com/odysa/CVQuest">
+<img style="margin-left:3px" src="https://img.shields.io/github/stars/odysa/CVQuest.svg?style=social&label=Star&maxAge=2592000" />
+</a>
+<a href="https://github.com/odysa">
+<img style="margin-left:3px" src="https://img.shields.io/github/followers/odysa.svg?style=social&label=Follow&maxAge=2592000" />
+</a>
+</p>
 
-[CVQuest](https://github.com/odysa/CVQuest) is an open-source project. If you want to control you know data, please run locally or deploy your own. We will **NOT** store your personal data.
-
-Sponsor: Want preparations beyond interview questions? Check out __[Baynana's AI resume builder](https://baynana.co/)__ to 10x your interview rate.
+<p>
+<a href="https://github.com/odysa/CVQuest">CVQuest</a> is an open-source project. Feel free to run locally or deploy your own if you want to control your personal data,
+</p>
+<p>
+We will <b>NOT</b> store your personal data.
+</p>
 """
 
-with gr.Blocks(css=STYLE) as demo:
-    gr.Markdown(INTRO_MD)
+SPONSOR_HTML = """
+Sponsor: Want preparations beyond interview questions? Check out <a href="https://baynana.co/">Baynana's AI resume builder</a> to 10x your interview rate.
+"""
 
-    input_pdf = gr.inputs.File(type="file")
-    generate_btn = gr.Button("Generate")
+
+with gr.Blocks(css=STYLE, title="CVQuest", theme=gr.themes.Soft()) as demo:
+    gr.HTML(INTRO_HTML)
+    input_pdf = gr.File(file_types=[".pdf"],)
+    generate_btn = gr.Button("Generate🎲")
     output_html = gr.outputs.HTML()
     generate_btn.click(fn=generate_interview_questions,
                        inputs=input_pdf, outputs=output_html)
+
+    gr.HTML(SPONSOR_HTML)
 
 demo.launch()
