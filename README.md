@@ -1,6 +1,6 @@
 # CVQuest
 <div align="center">
-<h3>Let AI interview you!</h3>
+<h3>Let AI interview!</h3>
 <strong>
 <samp>
 
