@@ -63,19 +63,36 @@ We will <b>NOT</b> store your personal data.
 </p>
 """
 
+scripts = """
+function ga() {
+const script = document.createElement("script");
+script.src = "https://www.googletagmanager.com/gtag/js?id=G-BPMPB256VF";
+script.async = true;
+document.head.appendChild(script);
+const script2 = document.createElement("script");
+script2.innerHTML = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BPMPB256VF');
+`;
+document.head.appendChild(script2);
+}
+"""
+
 SPONSOR_HTML = """
 Sponsor: Want preparations beyond interview questions? Check out <a href="https://baynana.co/">Baynana's AI resume builder</a> to 10x your interview rate.
 """
 
 
 with gr.Blocks(css=STYLE, title="CVQuest", theme=gr.themes.Soft()) as demo:
+    demo.load(_js=scripts)
     gr.HTML(INTRO_HTML)
     input_pdf = gr.File(file_types=[".pdf"],)
     generate_btn = gr.Button("Generate🎲")
     output_html = gr.outputs.HTML()
     generate_btn.click(fn=generate_interview_questions,
                        inputs=input_pdf, outputs=output_html)
-
     gr.HTML(SPONSOR_HTML)
 
 demo.launch()
