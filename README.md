@@ -12,11 +12,27 @@
 <br>
 
 🔥 👉 [Live Demo](https://cvquest-cli-production.up.railway.app)
-
 <br>
-This command line interface (CLI) tool is designed to help interviewers and recruiters by automatically generating interview questions based on a candidate's resume. The tool uses a combination of a resume parser to extract information from the resume and an interview question maker to create relevant questions.
+CVQuest is designed to help interviewers and recruiters by automatically generating interview questions based on a candidate's resume. The tool uses a combination of a resume parser to extract information from the resume and an interview question maker to create relevant questions.
 
-CVQuest also provides a Gradio-based user interface that allows users to upload their resume in PDF format and receive a list of interview questions organized by category.
+Example Output:
+```json
+{
+  "technical_questions": [
+    "Can you discuss your experience with LSM-based storage engines? What are the main benefits of this approach, and how did you apply it in your work on AgateDB?",
+    "In your work on Zone-Aware Garbage Collection for TerarkDB, what were the key performance metrics you used to evaluate the effectiveness of your implementation? How did it compare to other approaches?"
+    ......
+  ],
+  "behavior_questions": [
+    "How do you approach working in a team environment? Can you provide an example of a successful collaboration with team members on a challenging project?",
+    "As a RisingLight Project Maintainer, how do you balance your responsibilities as a maintainer with your other commitments? How do you ensure that you are meeting the needs of the project and the community while also managing your own workload?"
+    ......
+  ]
+}
+```
+
+
+CVQuest also provides a Gradio-based user interface that allows users to upload their resume in PDF format and receive a list of interview questions organized by category. Checkout 👉 [here](https://cvquest-cli-production.up.railway.app)
 
 ## Features ✨
 * Parse resume files in PDF format and convert them into a JSON format
