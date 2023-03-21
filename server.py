@@ -63,7 +63,7 @@ We will <b>NOT</b> store your personal data.
 </p>
 """
 
-ga_scripts = """
+SCRIPTS = """
 function ga() {
 const script = document.createElement("script");
 script.src = "https://www.googletagmanager.com/gtag/js?id=G-BPMPB256VF";
@@ -86,7 +86,7 @@ Sponsor: Want preparations beyond interview questions? Check out <a href="https:
 
 
 with gr.Blocks(css=STYLE, title="CVQuest", theme=gr.themes.Soft()) as demo:
-    demo.load(_js=ga_scripts)
+    demo.load(_js=SCRIPTS)
     gr.HTML(INTRO_HTML)
     input_pdf = gr.File(file_types=[".pdf"],)
     generate_btn = gr.Button("Generate🎲")
