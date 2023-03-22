@@ -5,33 +5,47 @@
 	let status: Status = 'Init';
 	let file: File;
 	let questions: Questions;
+	type FileChangeEvent = CustomEvent<{ files: File[]; nativeEvent?: Event }>;
 
-	function handleFileInput(files: File[]) {
+	function handleFileInput(e: FileChangeEvent) {
+		let files = e.detail.files;
+		if (files == null) {
+			return;
+		}
 		if (files.length > 1) {
 			// very unlikely to happen
 			alert('must upload only one file');
+			return;
+		}
+		if (files[0].size > 1024 * 1024 * 20) {
+			alert('file too big');
 			return;
 		}
 		file = files[0];
 	}
 
 	async function generateQuestions() {
-		// Add your logic to generate questions and answers
-		// based on the selected file
-
-		// For demonstration purposes, we'll add a sample question and answer
-		questions = {
-			tech: [
-				{ question: 'What is the purpose of Svelte?', answer: '' },
-				{ question: 'What is the purpose of Svelte?', answer: '' },
-				{ question: 'What is the purpose of Svelte?', answer: '' }
-			],
-			behavior: [
-				{ question: 'What is the purpose of Svelte?', answer: '' },
-				{ question: 'What is the purpose of Svelte?', answer: '' },
-				{ question: 'What is the purpose of Svelte?', answer: '' }
-			]
-		};
+		if (file == null) {
+			alert('file not found');
+			return;
+		}
+		try {
+			status = 'Loading';
+			const formData = new FormData();
+			formData.append('size', file.size.toString());
+			formData.append('file', file);
+			formData.append('name', file.name);
+			formData.append('mimeType', file.type);
+			const resp = await fetch('http://localhost:8080/questions/', {
+				method: 'POST',
+				body: formData
+			});
+			const json = await resp.json();
+			questions = json;
+			status = 'Done';
+		} catch (e) {
+			status = 'Error';
+		}
 	}
 </script>
 
@@ -53,10 +67,24 @@
 			/>
 		</a>
 	</Subhead>
-	<FileDropzone accept=".pdf" max={1} />
-	<Button id="generate-button" filled round on:click={generateQuestions}
-		><div id="generate-button-text">Generate 🎲</div></Button
-	>
+
+	<FileDropzone accept=".pdf" max={1} on:change={handleFileInput} />
+
+	{#if status === 'Init' || status === 'Done'}
+		<Button id="generate-button" filled round on:click={generateQuestions}>
+			<div id="generate-button-text">Generate 🎲</div>
+		</Button>
+	{/if}
+	{#if status === 'Loading'}
+		<Button id="generate-button" filled round disabled>
+			<div id="generate-button-text">Waiting.... OpenAI may be too busy...</div>
+		</Button>
+	{/if}
+	{#if status === 'Error'}
+		<Button id="generate-button" filled round danger on:click={generateQuestions}>
+			<div id="generate-button-text">Error Please Try Again....</div>
+		</Button>
+	{/if}
 
 	<FoldableListItem {questions} />
 </div>

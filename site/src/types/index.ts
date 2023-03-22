@@ -1,7 +1,7 @@
-export type Status = 'Init' | 'Loading' | 'Done';
+export type Status = 'Init' | 'Loading' | 'Done' | 'Error';
 export type Questions = {
-	tech: Question[];
-	behavior: Question[];
+	technical_questions: Question[];
+	behavior_questions: Question[];
 };
 export type Question = {
 	question: string;

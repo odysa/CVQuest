@@ -6,22 +6,20 @@
 {#if questions}
 	<div>
 		<h2>Technical Questions</h2>
-		{#each questions.tech as q}
+		{#each questions.technical_questions as q}
 			<div class="block">
 				<p class="question">
-					{q.question}
+					{q}
 				</p>
 			</div>
-			<br />
 		{/each}
 		<h2>Behavior Questions</h2>
-		{#each questions.behavior as q}
+		{#each questions.behavior_questions as q}
 			<div class="block">
 				<p class="question">
-					{q.question}
+					{q}
 				</p>
 			</div>
-			<br />
 		{/each}
 	</div>
 {/if}
@@ -29,8 +27,8 @@
 <style>
 	.block {
 		border-bottom: 0.5px solid lightgrey;
-		margin: 8px 8px 20px 8px;
-		padding: 16px 16px 16px 0px;
+		margin: 8px 8px 8px 8px;
+		padding: 14px 14px 14px 0px;
 	}
 	.question {
 		font-size: 18px;
