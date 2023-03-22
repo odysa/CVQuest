@@ -11,17 +11,17 @@ RUN npm run build
 
 # Stage 2: Set up Python environment
 FROM python:3.9
+ARG OPENAI_API_KEY
 
 WORKDIR /app
+
+RUN printenv > .env
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 COPY --from=svelte-builder /app/site/build /app/site/build
-
-ARG OPENAI_API_KEY
-ENV OPENAI_API_KEY=$OPENAI_API_KEY
 
 EXPOSE 8080
 
