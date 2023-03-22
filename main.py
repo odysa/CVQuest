@@ -1,10 +1,12 @@
+"""
+This is the server of CVQuest
+"""
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
+from fastapi.staticfiles import StaticFiles
+
 from application.interview import InterviewQuestionMaker
 from application.utils import OpenAIConfig
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
 
 app = FastAPI()
 origins = ["*"]
@@ -24,6 +26,15 @@ question_maker = InterviewQuestionMaker(config=OpenAIConfig(temperature=0.7))
 
 
 @app.post("/questions/")
-async def create_upload_file(file: UploadFile):
+async def create_questions(file: UploadFile):
+    """
+    Create interview questions from a text file uploaded via HTTP POST.
+
+    Args:
+        file (UploadFile): The uploaded text file.
+
+    Returns:
+        str: The generated interview questions.
+    """
     answers = question_maker.create_questions(file.filename)
     return answers
