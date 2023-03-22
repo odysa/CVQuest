@@ -1,3 +1,3 @@
 #!/bin/bash
 
-uvicorn main:app --port 8989 & uvicorn main:static --port 8080
+uvicorn main:little_nginx --host "0.0.0.0" --port 8080

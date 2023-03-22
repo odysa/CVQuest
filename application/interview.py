@@ -6,7 +6,7 @@ import re
 import PyPDF2
 from application.prompts import QUESTION_PROMPT
 from application.utils import OpenAIConfig, query_ai
-
+from typing import Union, IO
 
 class InterviewQuestionMaker:
     """
@@ -18,14 +18,14 @@ class InterviewQuestionMaker:
         self.config = config
         self.prompt = prompt
 
-    def create_questions(self, pdf_path: str):
+    def create_questions(self, pdf_stream: Union[str, IO]) -> str:
         """
         Create interview questions for the given PDF resume file.
 
         Args:
-            pdf_path (str): Path to the PDF resume file.
+            pdf_stream (IO): The PDF file as a stream.
         """
-        pdf_str = self.pdf_to_str(pdf_path)
+        pdf_str = self.pdf_to_str(pdf_stream)
         prompt = self.complete_prompt(pdf_str)
         return query_ai(self.config, prompt)
 
@@ -38,17 +38,16 @@ class InterviewQuestionMaker:
         """
         return self.prompt.format(resume=pdf_str)
 
-    def pdf_to_str(self, pdf_path: str) -> str:
+    def pdf_to_str(self, pdf_stream: Union[str, IO]) -> str:
         """
         Convert the given PDF file to a string.
 
         Args:
-            pdf_path (str): Path to the PDF file.
+            pdf_stream (IO): The PDF file as a stream.
         """
-        with open(pdf_path, "rb") as pdf_file:
-            pdf = PyPDF2.PdfReader(pdf_file)
-            pages = [self.format_pdf(p.extract_text()) for p in pdf.pages]
-            return "\n\n".join(pages)
+        pdf = PyPDF2.PdfReader(pdf_stream)
+        pages = [self.format_pdf(p.extract_text()) for p in pdf.pages]
+        return "\n\n".join(pages)
 
     def format_pdf(self, pdf_str: str) -> str:
         """
