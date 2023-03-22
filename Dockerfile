@@ -20,6 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 COPY --from=svelte-builder /app/site/build /app/site/build
 
+ARG OPENAI_API_KEY
 ENV OPENAI_API_KEY=$OPENAI_API_KEY
 
 EXPOSE 8080
