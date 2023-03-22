@@ -12,6 +12,9 @@ RUN npm run build
 # Stage 2: Set up Python environment
 FROM python:3.9
 
+ARG OPENAI_API_KEY
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
+
 WORKDIR /app
 
 COPY requirements.txt ./
