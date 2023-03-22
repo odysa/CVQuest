@@ -36,7 +36,8 @@
 			formData.append('file', file);
 			formData.append('name', file.name);
 			formData.append('mimeType', file.type);
-			const resp = await fetch('http://localhost:8989/questions', {
+			const currentUrl = window.location.href.replace('/public', '');
+			const resp = await fetch(`${currentUrl}/api/questions`, {
 				method: 'POST',
 				body: formData
 			});
