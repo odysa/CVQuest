@@ -36,10 +36,14 @@
 			formData.append('file', file);
 			formData.append('name', file.name);
 			formData.append('mimeType', file.type);
-			const resp = await fetch('http://localhost:8080/questions/', {
+			const resp = await fetch('http://localhost:8989/questions', {
 				method: 'POST',
 				body: formData
 			});
+			if (!resp.ok) {
+				status = 'Error';
+				return;
+			}
 			const json = await resp.json();
 			questions = json;
 			status = 'Done';

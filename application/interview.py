@@ -18,6 +18,9 @@ class InterviewQuestionMaker:
         self.config = config
         self.prompt = prompt
 
+    def create_questions_from_bytes(self, bytes: bytes):
+        pass
+
     def create_questions(self, pdf_path: str):
         """
         Create interview questions for the given PDF resume file.
