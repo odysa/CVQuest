@@ -23,4 +23,4 @@ COPY --from=svelte-builder /app/site/build /app/site/build
 EXPOSE 8080
 
 # Start the application
-CMD ["bash", "/app/run.sh"]
+CMD ["bash", "run.sh"]

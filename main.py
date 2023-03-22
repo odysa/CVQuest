@@ -39,7 +39,7 @@ async def create_questions(file: UploadFile):
     Returns:
         str: The generated interview questions.
     """
-    answers = question_maker.create_questions(file.filename)
+    answers = question_maker.create_questions(file.file)
     return answers
 
 static = FastAPI()
